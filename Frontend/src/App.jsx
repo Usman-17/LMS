@@ -1,10 +1,21 @@
-import React from 'react'
+import {
+  BrowserRouter,
+  Route,
+  Routes,
+} from "react-router-dom";
+import Navbar from './components/Navbar'
+import HomePage from './pages/HomePage';
 
 const App = () => {
   return (
-    <h1 class="text-3xl font-bold underline">
-      Hello world!
-    </h1>
+    <div className="text-default min-h-screen bg-white">
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+        </Routes >
+      </BrowserRouter>
+    </div>
   )
 }
 
