@@ -6,6 +6,7 @@ import {
 import Navbar from './components/Navbar'
 import HomePage from './pages/HomePage';
 import Footer from "./components/Footer";
+import CourseListPage from "./pages/CourseListPage";
 
 const App = () => {
   return (
@@ -14,6 +15,9 @@ const App = () => {
         <Navbar />
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/course-list" element={<CourseListPage />} />
+          <Route path="/course-list/:input" element={<CourseListPage />} />
+
         </Routes >
         <Footer />
       </BrowserRouter>
