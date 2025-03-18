@@ -6,11 +6,13 @@ export const AppContext = createContext();
 
 export const AppContextProvider = ({ children }) => {
     const [allCourses, setAllCourses] = useState([])
+    const [enrolledCourses, setEnrolledCourses] = useState([])
 
     // Fetch All Courses
     const fetchAllCourses = async () => {
         setAllCourses(dummyCourses)
     }
+
 
     // Function to calculate average rating of course
     const calculateRatings = (course) => {
@@ -23,6 +25,7 @@ export const AppContextProvider = ({ children }) => {
         })
         return totalRating / course.courseRatings.length
     }
+
 
     // Function to calculate the course chapter time
     const calculateChapterTime = (chapter) => {
@@ -44,7 +47,6 @@ export const AppContextProvider = ({ children }) => {
     }
 
 
-
     // Function to calculate the Number of Lectures in the Course
     const calculateNoOfLectures = (course) => {
         let totalLectures = 0;
@@ -60,8 +62,16 @@ export const AppContextProvider = ({ children }) => {
     };
 
 
+    // Fetch User Enrolled Courses
+    const fetchUserEnrolledCourses = async () => {
+        setEnrolledCourses(dummyCourses)
+    }
+
+
+
     useEffect(() => {
         fetchAllCourses()
+        fetchUserEnrolledCourses()
     }, []);
 
     const value = {
@@ -69,7 +79,9 @@ export const AppContextProvider = ({ children }) => {
         calculateRatings,
         calculateChapterTime,
         calculateCourseDuration,
-        calculateNoOfLectures
+        calculateNoOfLectures,
+        enrolledCourses,
+        fetchUserEnrolledCourses,
     }
     return (
         <AppContext.Provider value={value}>
