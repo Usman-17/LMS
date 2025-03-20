@@ -9,6 +9,7 @@ import Footer from "./components/Footer";
 import CourseListPage from "./pages/CourseListPage";
 import CourseDetailPage from "./pages/CourseDetailPage";
 import MyEnrollmentsPage from "./pages/MyEnrollmentsPage";
+import PlayerPage from "./pages/PlayerPage";
 
 const App = () => {
   return (
@@ -21,7 +22,7 @@ const App = () => {
           <Route path="/course-list/:input" element={<CourseListPage />} />
           <Route path="/course/:id" element={<CourseDetailPage />} />
           <Route path="/my-enrollments" element={<MyEnrollmentsPage />} />
-
+          <Route path="/player/:id" element={<PlayerPage />} />
         </Routes >
         <Footer />
       </BrowserRouter>
