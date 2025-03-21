@@ -7,6 +7,7 @@ export const AppContext = createContext();
 export const AppContextProvider = ({ children }) => {
     const [allCourses, setAllCourses] = useState([])
     const [enrolledCourses, setEnrolledCourses] = useState([])
+    const [isEducator, setIsEducator] = useState(true)
 
     // Fetch All Courses
     const fetchAllCourses = async () => {
@@ -82,6 +83,8 @@ export const AppContextProvider = ({ children }) => {
         calculateNoOfLectures,
         enrolledCourses,
         fetchUserEnrolledCourses,
+        isEducator,
+        setIsEducator,
     }
     return (
         <AppContext.Provider value={value}>

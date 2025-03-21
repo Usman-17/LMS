@@ -1,6 +1,8 @@
 import { assets } from "../assets/assets.js"
 import { Link } from 'react-router-dom'
 import { useClerk, UserButton, useUser } from "@clerk/clerk-react";
+import { useContext } from "react";
+import { AppContext } from "../context/AppContext.jsx";
 
 
 const Navbar = () => {
@@ -10,6 +12,8 @@ const Navbar = () => {
 
     const { openSignIn } = useClerk()
     const { user } = useUser()
+
+    const { isEducator } = useContext(AppContext)
 
     return (
         <div className={`flex items-center justify-between px-4 sm:px-10 md:px-14 lg:px-36 border-b border-gray-300 py-4 ${isCourseListPage ? "bg-white" : "bg-cyan-100/70"}`}>
@@ -24,9 +28,9 @@ const Navbar = () => {
                 {user &&
                     <>
                         <Link to="/educator">
-                            <button className="cursor-pointer">Become Educator</button> |
+                            <button className="cursor-pointer pr-5">{isEducator ? "Educator Dashboard" : "Become Educator"}</button> | {" "}
                         </Link>
-                        <Link to={"/my-enrollments"} >My Enrollments</Link>
+                        <Link to={"/my-enrollments"}>My Enrollments</Link>
                     </>
                 }
 
@@ -40,22 +44,18 @@ const Navbar = () => {
                 <div className="flex items-center gap-1 sm:gap-2 max-sm:text-xs">
                     {user &&
                         <>
-                            <button className="cursor-pointer">Become Educator</button> |
+                            <Link to="/educator">
+                                <button className="cursor-pointer">{isEducator ? "Educator Dashboard" : "Become Educator"}</button> |
+                            </Link>
                             <Link to={"/my-enrollments"} >My Enrollments</Link>
                         </>
                     }
                 </div>
 
-
-
-
-
-
-
-
-
-                {
-                    user ? <UserButton /> : <button onClick={() => openSignIn()} className="cursor-pointer"><img src={assets.user_icon} alt="user_icon" /></button>
+                {user ?
+                    <UserButton /> :
+                    <button onClick={() => openSignIn()} className="cursor-pointer"><img src={assets.user_icon} alt="user_icon" />
+                    </button>
                 }
             </div>
         </div>
