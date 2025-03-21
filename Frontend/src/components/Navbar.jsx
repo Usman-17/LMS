@@ -4,7 +4,10 @@ import { useClerk, UserButton, useUser } from "@clerk/clerk-react";
 
 
 const Navbar = () => {
-    const isCourseListPage = location.pathname.includes("/course-list")
+    // For Change Navbar Color
+    const isCourseListPage = ["/course-list", "/my-enrollments"].some(path => location.pathname.includes(path))
+        || location.pathname.startsWith("/player/");
+
     const { openSignIn } = useClerk()
     const { user } = useUser()
 
@@ -20,7 +23,9 @@ const Navbar = () => {
             <div className='hidden md:flex items-center gap-5 text-gray-500'>
                 {user &&
                     <>
-                        <button className="cursor-pointer">Become Educator</button> |
+                        <Link to="/educator">
+                            <button className="cursor-pointer">Become Educator</button> |
+                        </Link>
                         <Link to={"/my-enrollments"} >My Enrollments</Link>
                     </>
                 }
@@ -40,6 +45,14 @@ const Navbar = () => {
                         </>
                     }
                 </div>
+
+
+
+
+
+
+
+
 
                 {
                     user ? <UserButton /> : <button onClick={() => openSignIn()} className="cursor-pointer"><img src={assets.user_icon} alt="user_icon" /></button>
