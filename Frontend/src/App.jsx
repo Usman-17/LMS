@@ -16,6 +16,7 @@ import PlayerPage from "./pages/PlayerPage";
 // Educator Pages
 import EducatorPage from "./pages/Educator/EducatorPage";
 import DashboardPage from "./pages/Educator/DashboardPage";
+import MyCoursesPage from "./pages/Educator/MyCoursesPage";
 
 const App = () => {
   const isEducatorRoute = useMatch("/educator/*")
@@ -36,6 +37,7 @@ const App = () => {
         {/* ----Educator Routes---- */}
         <Route path="/educator" element={<EducatorPage />}>
           <Route path="/educator" element={<DashboardPage />} />
+          <Route path="my-courses" element={<MyCoursesPage />} />
         </Route>
 
       </Routes >
