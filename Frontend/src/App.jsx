@@ -1,12 +1,8 @@
-import {
-  Route,
-  Routes,
-  useMatch,
-} from "react-router-dom";
-import Navbar from './components/Navbar'
+import { Route, Routes, useMatch } from "react-router-dom";
+import Navbar from "./components/Navbar";
 
 // Student Pages
-import HomePage from './pages/HomePage';
+import HomePage from "./pages/HomePage";
 import Footer from "./components/Footer";
 import CourseListPage from "./pages/CourseListPage";
 import CourseDetailPage from "./pages/CourseDetailPage";
@@ -17,9 +13,10 @@ import PlayerPage from "./pages/PlayerPage";
 import EducatorPage from "./pages/Educator/EducatorPage";
 import DashboardPage from "./pages/Educator/DashboardPage";
 import MyCoursesPage from "./pages/Educator/MyCoursesPage";
+import StudentEnrolledPage from "./pages/Educator/StudentEnrolledPage";
 
 const App = () => {
-  const isEducatorRoute = useMatch("/educator/*")
+  const isEducatorRoute = useMatch("/educator/*");
 
   return (
     <div className="text-default min-h-screen bg-white">
@@ -38,12 +35,12 @@ const App = () => {
         <Route path="/educator" element={<EducatorPage />}>
           <Route path="/educator" element={<DashboardPage />} />
           <Route path="my-courses" element={<MyCoursesPage />} />
+          <Route path="student-enrolled" element={<StudentEnrolledPage />} />
         </Route>
-
-      </Routes >
+      </Routes>
       <Footer />
-    </div >
-  )
-}
+    </div>
+  );
+};
 
-export default App
+export default App;
