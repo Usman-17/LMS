@@ -17,13 +17,13 @@ export const clerkWebhook = async (req, res) => {
     switch (type) {
       // User Created Case
       case "user.created": {
-        if (!data.email_address?.length) {
+        if (!data.email_addresses?.length) {
           return res.status(400).json({ error: "Email address is missing" });
         }
 
         const userData = {
           _id: data.id,
-          email: data.email_address[0].email_address,
+          email: data.email_addresses[0].email_address,
           name: `${data.first_name || ""} ${data.last_name || ""}`.trim(),
           imageUrl: data.image_url,
         };
